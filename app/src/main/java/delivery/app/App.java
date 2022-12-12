@@ -20,10 +20,10 @@ public class App {
     }
 
     public static void main(String[] args) {
-       // Create a customer.
-        Customer customer = new Customer("John Doe", "123 Main St");
+       
+        Customer customer = new Customer("Sergio Suarique", "Cra 123");
 
-        // Create a list of items to be added to the order.
+        
         List<Item> items = new ArrayList<>();
         items.add(new Item("Pizza", 1, 10.99));
         items.add(new Item("Soda", 2, 1.99));
@@ -34,13 +34,14 @@ public class App {
 
         DeliveryFacade facade = new DeliveryFacade();
 
+        customer.getOrders().get(0).printOrder();
+
         facade.deliver(order);
         
         facade.trackDelivery(order);
 
         facade.cancelDelivery(order);
 
-        customer.getOrders().get(0).printOrder();
         
     }
 }

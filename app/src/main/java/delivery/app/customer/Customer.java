@@ -35,15 +35,6 @@ public class Customer {
         orders.add(order);
     }
 
-    public void printOrders() {
-        System.out.println("Customer: " + name);
-        System.out.println("Address: " + address);
-        System.out.println("Orders: ");
-        for (Order order : orders) {
-            order.printOrder();
-        }
-    }
-
     public void saveOrderPrototype(String name, Order prototype) {
         myCustomOrders.put(name, prototype);
     }

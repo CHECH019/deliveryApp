@@ -16,12 +16,11 @@ public class DeliveryPersonManager {
 
             deliveryPersons = new ArrayList<>();
             
-            // Populate the list with some initial delivery persons.
             deliveryPersons.add(new DeliveryPerson("Camilo", "BICYCLE"));
-            deliveryPersons.add(new DeliveryPerson("Jane", "MOTORCYCLE"));
-            deliveryPersons.add(new DeliveryPerson("Bob", "BICYCLE"));
-            deliveryPersons.add(new DeliveryPerson("Alice", "MOTORCYCLE"));
-            deliveryPersons.add(new DeliveryPerson("Tom", "BICYCLE"));
+            deliveryPersons.add(new DeliveryPerson("Laura", "MOTORCYCLE"));
+            deliveryPersons.add(new DeliveryPerson("Daniel", "BICYCLE"));
+            deliveryPersons.add(new DeliveryPerson("Andrea", "MOTORCYCLE"));
+            deliveryPersons.add(new DeliveryPerson("Javier", "BICYCLE"));
         }
     }
 
@@ -33,7 +32,6 @@ public class DeliveryPersonManager {
             }
         }
         
-        // If no delivery person is found, return null.
         return null;
     }
 }
