@@ -1,27 +1,24 @@
 package delivery.app.order;
 
-import java.util.Map;
-
 import delivery.app.utils.BonusCodes;
 
-public class CouponOrderDecorator extends OrderDecorator{
+public class CouponOrderDecorator extends BaseOrderDecorator{
 
-    public String coupon;
-    Map<String,Double> existingCodes;
+    private String coupon;
 
     public CouponOrderDecorator(Order order, String coupon) {
         super(order);
         this.coupon = coupon;
-        existingCodes = BonusCodes.getCodes();
+        totalCost = getTotalCost();
     }
 
     @Override
     public double getTotalCost() {
-        if(existingCodes.containsKey(coupon)){
-            double discountAmount = totalCost * existingCodes.get(coupon) / 100;
-            return totalCost - discountAmount;
+        if(BonusCodes.get().containsKey(coupon)){
+            double discountAmount = order.totalCost * BonusCodes.get().get(coupon) / 100;
+            return order.totalCost - discountAmount;
         } else {
-            return totalCost;
+            return order.totalCost;
         }
     }
 

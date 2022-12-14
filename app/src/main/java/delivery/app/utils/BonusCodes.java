@@ -9,7 +9,7 @@ public class BonusCodes {
 
     private BonusCodes(){}
 
-    public static Map<String,Double> getCodes(){
+    public static Map<String,Double> get(){
         if(existingCodes == null){
             existingCodes = new HashMap<>();
             existingCodes.put("D1SC0UNT10", 10.0);

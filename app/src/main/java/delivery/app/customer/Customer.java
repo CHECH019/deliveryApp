@@ -7,8 +7,8 @@ import java.util.Map;
 
 import delivery.app.order.Order;
 
-public class Customer {
-    Map<String, Order> myCustomOrders = new HashMap<>();
+public class Customer{
+    private Map<String, Order> myCustomOrders = new HashMap<>();
     private List<Order> orders;
     private String name;
     private String address;

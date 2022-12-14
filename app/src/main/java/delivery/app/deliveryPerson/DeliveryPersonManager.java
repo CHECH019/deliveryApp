@@ -1,9 +1,7 @@
-package delivery.app.manager;
+package delivery.app.deliveryPerson;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import delivery.app.delivery.DeliveryPerson;
 
 public class DeliveryPersonManager {
     private static List<DeliveryPerson> deliveryPersons;

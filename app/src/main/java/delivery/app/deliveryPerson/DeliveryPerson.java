@@ -1,4 +1,4 @@
-package delivery.app.delivery;
+package delivery.app.deliveryPerson;
 
 import delivery.app.order.Order;
 

@@ -3,7 +3,7 @@ package delivery.app.order;
 
 public class StandardOrder extends Order{
     
-    public StandardOrder(Order order) {
+    private StandardOrder(Order order) {
         super(order);
     }
 

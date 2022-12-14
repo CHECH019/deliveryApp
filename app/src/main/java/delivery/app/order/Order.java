@@ -4,16 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import delivery.app.item.Item;
+import delivery.app.notification.OrderNotifier;
 import delivery.app.utils.Prototype;
 
 public abstract class Order implements Prototype {
     
     protected String deliveryStatus;
-    protected int distance;
+    protected double distance;
     protected String customerName;
     protected String customerAddress;
     protected List<Item> items;
     protected double totalCost;
+    public OrderNotifier nofitier;
+
+    public Order(){}
 
     public Order(Order order){
         this.distance = order.distance;
@@ -21,7 +25,7 @@ public abstract class Order implements Prototype {
         this.customerAddress = order.customerAddress;
         this.totalCost = order.totalCost;
         this.items = new ArrayList<>(order.getItems());
-
+        this.nofitier = new OrderNotifier();
     }
     
     public Order(int distance, String customerName, String customerAddress) {
@@ -30,13 +34,10 @@ public abstract class Order implements Prototype {
         this.customerAddress = customerAddress;
         this.totalCost = 0;
         items = new ArrayList<>();
+        this.nofitier = new OrderNotifier();
     }
     
     public abstract double getTotalCost() ;
-
-    public Order(int distance) {
-        this.distance = distance;
-    }
 
     public String getDeliveryStatus() {
         return deliveryStatus;
@@ -44,13 +45,18 @@ public abstract class Order implements Prototype {
 
     public void setDeliveryStatus(String deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
+        doNotify();
     }
 
-    public int getDistance() {
+    public void doNotify(){
+        nofitier.notifyObservers(this);
+    }
+
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 

@@ -1,13 +1,14 @@
 package delivery.app.delivery;
 
+import delivery.app.deliveryPerson.DeliveryPerson;
 import delivery.app.order.Order;
 
-public abstract class AbstractDeliveryService implements DeliveryService{
+public abstract class AbstractDeliveryStrategy implements DeliveryServiceStrategy{
 
     protected Order order;
     protected DeliveryPerson deliveryPerson;
 
-    public AbstractDeliveryService(Order order, DeliveryPerson deliveryPerson){
+    public AbstractDeliveryStrategy(Order order, DeliveryPerson deliveryPerson){
         this.order = order;
         this.deliveryPerson = deliveryPerson;
     }
@@ -19,18 +20,6 @@ public abstract class AbstractDeliveryService implements DeliveryService{
         } else {
             order.setDeliveryStatus("DELIVERY_FAILED");
         }
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public DeliveryPerson getDeliveryPerson() {
-        return deliveryPerson;
     }
 
     public void setDeliveryPerson(DeliveryPerson deliveryPerson) {

@@ -10,9 +10,6 @@ import java.util.List;
 import delivery.app.customer.Customer;
 import delivery.app.facade.DeliveryFacade;
 import delivery.app.item.Item;
-import delivery.app.manager.OrderAdapter;
-import delivery.app.manager.OrderManagerAPI;
-import delivery.app.order.Order;
 
 public class App {
     public String getGreeting() {
@@ -20,28 +17,34 @@ public class App {
     }
 
     public static void main(String[] args) {
-       
-        Customer customer = new Customer("Sergio Suarique", "Cra 123");
+        Customer customer1 = new Customer("Sergio Suarique", "Cra 123");
+
+        DeliveryFacade delivery = new DeliveryFacade(customer1);
 
         
         List<Item> items = new ArrayList<>();
         items.add(new Item("Pizza", 1, 10.99));
         items.add(new Item("Soda", 2, 1.99));
 
-        OrderManagerAPI orderManager = new OrderAdapter(customer);
+        delivery.createOrder(items, "D1SC0UNT10");
 
-        Order order = orderManager.makeOrder(items,"D1SC0UNT10");
+        delivery.deliver();
 
-        DeliveryFacade facade = new DeliveryFacade();
+        System.out.println("\n---------------------------------------\n");
 
-        customer.getOrders().get(0).printOrder();
 
-        facade.deliver(order);
+        Customer customer2 = new Customer("Ximena Perez", "Calle 92");
+
+        DeliveryFacade delivery2 = new DeliveryFacade(customer2);
         
-        facade.trackDelivery(order);
+        List<Item> items2 = new ArrayList<>();
+        items2.add(new Item("Burger", 2, 15.99));
+        items2.add(new Item("Pepsi", 2, 1.25));
 
-        facade.cancelDelivery(order);
+        delivery2.createOrder(items2);
 
-        
+        delivery2.deliver();
+
+
     }
 }
