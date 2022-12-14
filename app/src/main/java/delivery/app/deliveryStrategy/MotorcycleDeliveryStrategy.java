@@ -1,4 +1,4 @@
-package delivery.app.delivery;
+package delivery.app.deliveryStrategy;
 
 import delivery.app.deliveryPerson.DeliveryPerson;
 import delivery.app.order.Order;
@@ -18,12 +18,12 @@ public class MotorcycleDeliveryStrategy extends AbstractDeliveryStrategy {
 
     @Override
     public double calculateDeliveryCost() {
-        return order.getDistance() * .35;
+        return deliveryDistanceAPI.calculateDeliveryDistance(order.getCustomerAddress()) * .35;
     }
 
     @Override
     public double calculateDeliveryTime() {
-        return order.getDistance() / 40 * 60;
+        return deliveryDistanceAPI.calculateDeliveryDistance(order.getCustomerAddress()) / 40 * 60;
     }
 
 }

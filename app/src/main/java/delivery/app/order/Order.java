@@ -10,7 +10,6 @@ import delivery.app.utils.Prototype;
 public abstract class Order implements Prototype {
     
     protected String deliveryStatus;
-    protected double distance;
     protected String customerName;
     protected String customerAddress;
     protected List<Item> items;
@@ -20,7 +19,6 @@ public abstract class Order implements Prototype {
     public Order(){}
 
     public Order(Order order){
-        this.distance = order.distance;
         this.customerName = order.customerName;
         this.customerAddress = order.customerAddress;
         this.totalCost = order.totalCost;
@@ -28,8 +26,7 @@ public abstract class Order implements Prototype {
         this.nofitier = new OrderNotifier();
     }
     
-    public Order(int distance, String customerName, String customerAddress) {
-        this.distance = distance;
+    public Order(String customerName, String customerAddress) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.totalCost = 0;
@@ -51,15 +48,6 @@ public abstract class Order implements Prototype {
     public void doNotify(){
         nofitier.notifyObservers(this);
     }
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
 
     public String getCustomerName() {
         return customerName;
@@ -99,7 +87,6 @@ public abstract class Order implements Prototype {
         System.out.println("Order details:");
         System.out.println("- Customer name: " + customerName);
         System.out.println("- Customer address: " + customerAddress);
-        System.out.println("- Distance: " + distance + " km");
         System.out.println("- Items: ");
         for (Item item : items) {
           System.out.println("  - " + item.getName() + " (" + item.getQuantity() + " x $" + item.getPrice() + ")");

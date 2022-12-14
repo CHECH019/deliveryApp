@@ -7,8 +7,8 @@ public class StandardOrder extends Order{
         super(order);
     }
 
-    public StandardOrder(int distance, String customerName, String customerAddress) {
-        super(distance, customerName, customerAddress);
+    public StandardOrder(String customerName, String customerAddress) {
+        super(customerName, customerAddress);
     }
 
     @Override

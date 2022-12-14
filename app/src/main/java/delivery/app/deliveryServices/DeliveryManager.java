@@ -1,6 +1,6 @@
 package delivery.app.deliveryServices;
 
-import delivery.app.delivery.DeliveryServiceStrategy;
+import delivery.app.deliveryStrategy.DeliveryServiceStrategy;
 
 public class DeliveryManager {
     private DeliveryServiceStrategy deliveryStrategy;

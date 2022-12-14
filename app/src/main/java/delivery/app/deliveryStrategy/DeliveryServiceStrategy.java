@@ -1,4 +1,4 @@
-package delivery.app.delivery;
+package delivery.app.deliveryStrategy;
 
 
 public interface DeliveryServiceStrategy {

@@ -45,6 +45,5 @@ public class App {
 
         delivery2.deliver();
 
-
     }
 }

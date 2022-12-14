@@ -3,6 +3,7 @@ package delivery.app.facade;
 import java.util.List;
 
 import delivery.app.customer.Customer;
+import delivery.app.deliveryServices.DeliveryDistanceFactory;
 import delivery.app.deliveryServices.DeliveryFactory;
 import delivery.app.deliveryServices.DeliveryManager;
 import delivery.app.item.Item;
@@ -15,6 +16,7 @@ public class DeliveryFacade {
     
     private Customer customer;
     private DeliveryManager manager;
+    private DeliveryFactory deliveryFactory;
     private Order order;
 
     public DeliveryFacade(){}
@@ -23,11 +25,21 @@ public class DeliveryFacade {
         this.customer = customer;
     }
 
+    public DeliveryFactory getDeliveryFactory() {
+        return deliveryFactory;
+    }
+
+    public void setDeliveryFactory(DeliveryFactory deliveryFactory) {
+        this.deliveryFactory = deliveryFactory;
+    }
+
+
+
     public void createOrder(List<Item> items){
         createOrder(items,null);
     }
     public void createOrder(List<Item> items, String coupon){
-        Order simpleOrder = new StandardOrder(getDeliveryDistance(customer.getAddress()), customer.getName(), customer.getAddress());
+        Order simpleOrder = new StandardOrder(customer.getName(), customer.getAddress());
         items.forEach(i -> simpleOrder.addItem(i));
         customer.saveOrderPrototype("my_order1", simpleOrder);
 
@@ -37,21 +49,15 @@ public class DeliveryFacade {
             order = new CouponOrderDecorator(simpleOrder,coupon);
         }
         customer.addOrder(order);
-        simpleOrder.nofitier.subscribe(new NotificationListener());
+        order.nofitier.subscribe(new NotificationListener());
         order.printOrder();
+        setDeliveryFactory(new DeliveryDistanceFactory(order));
     }
 
     public void deliver(){
-        manager = new DeliveryManager(DeliveryFactory.getDeliveryStrategy(order));
+        manager = new DeliveryManager(deliveryFactory.getDeliveryStrategy());
         manager.deliver();
         
     }
-    public int getDeliveryDistance(String address){
-        Integer distance;
-        String d = address.split(" ")[1];
-        distance = 100 - Integer.parseInt(d);
-        return distance > 0 ? distance:-distance;
-
-    }
-
+    
 }
