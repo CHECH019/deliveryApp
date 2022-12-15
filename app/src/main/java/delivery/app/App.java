@@ -7,9 +7,11 @@ package delivery.app;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import delivery.app.customer.Customer;
 import delivery.app.facade.DeliveryFacade;
 import delivery.app.item.Item;
+import delivery.app.utils.SystemVariablesManager;
 
 public class App {
     public String getGreeting() {
@@ -17,6 +19,21 @@ public class App {
     }
 
     public static void main(String[] args) {
+
+        SystemVariablesManager variables = SystemVariablesManager.getInstance();
+        variables.addCoupon("D1SC0UNT10", 10.0);
+        variables.addCoupon("D1SC0UNT15", 15.0);
+        variables.addCoupon("D1SC0UNT20", 20.0);
+
+        variables.setBicyleDeliveryCostKm(.35);
+        variables.setBicyleDeliveryVelocity(15.0);
+
+        variables.setMotorcyleDeliveryCostKm(.25);
+        variables.setMotorcyleDeliveryVelocity(40.0);
+
+        variables.setLowPriotityDiscount(0.02);
+        variables.setPriorityOrderFee(5.5);
+
         DeliveryFacade delivery = new DeliveryFacade();
 
         Customer customer1 = new Customer("Sergio Suarique","Cra 123");
@@ -40,6 +57,6 @@ public class App {
         delivery.deliver();
         System.out.println("\n---------------------------------------\n");
         delivery.deliver();
-
+        
     }
 }

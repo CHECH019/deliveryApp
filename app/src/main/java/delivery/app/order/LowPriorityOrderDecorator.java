@@ -2,7 +2,7 @@ package delivery.app.order;
 
 public class LowPriorityOrderDecorator extends BaseOrderDecorator {
 
-    private static double LOW_PRIORITY_DISCOUNT = 0.02;
+
     public LowPriorityOrderDecorator(Order order) {
         super(order);
         this.totalCost = getTotalCost();
@@ -12,7 +12,7 @@ public class LowPriorityOrderDecorator extends BaseOrderDecorator {
     
     @Override
     public double getTotalCost() {
-        return order.getTotalCost()-order.getTotalCost()*LOW_PRIORITY_DISCOUNT;
+        return order.getTotalCost()-order.getTotalCost()*variables.getLowPriotityDiscount();
     }
     @Override
     public Order clonar() {

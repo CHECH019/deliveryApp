@@ -5,25 +5,28 @@ import delivery.app.distanceDeliveryService.DeliveryDistanceAPI;
 import delivery.app.distanceDeliveryService.DeliveryDistanceAdapter;
 import delivery.app.distanceDeliveryService.DeliveryDistanceCalculator;
 import delivery.app.order.Order;
+import delivery.app.utils.SystemVariablesManager;
 
 public abstract class AbstractDeliveryStrategy implements DeliveryServiceStrategy{
 
+    protected SystemVariablesManager variables;
     protected Order order;
-    public Order getOrder() {
-        return order;
-    }
-
-    protected DeliveryPerson deliveryPerson;
-    public DeliveryPerson getDeliveryPerson() {
-        return deliveryPerson;
-    }
-
     protected DeliveryDistanceAPI deliveryDistanceAPI;
+    protected DeliveryPerson deliveryPerson;
 
     public AbstractDeliveryStrategy(Order order, DeliveryPerson deliveryPerson){
         this.order = order;
         this.deliveryPerson = deliveryPerson;
         this.deliveryDistanceAPI = new DeliveryDistanceAdapter(new DeliveryDistanceCalculator());
+        variables = SystemVariablesManager.getInstance();
+    }
+
+    public DeliveryPerson getDeliveryPerson() {
+        return deliveryPerson;
+    }
+
+    public Order getOrder() {
+        return order;
     }
 
     public void deliver() {

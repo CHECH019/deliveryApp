@@ -1,10 +1,11 @@
 package delivery.app.order;
 
-import delivery.app.utils.BonusCodes;
+
 
 public class CouponOrderDecorator extends BaseOrderDecorator{
 
     private String coupon;
+    
 
     public CouponOrderDecorator(Order order, String coupon) {
         super(order);
@@ -14,8 +15,8 @@ public class CouponOrderDecorator extends BaseOrderDecorator{
 
     @Override
     public double getTotalCost() {
-        if(BonusCodes.get().containsKey(coupon)){
-            double discountAmount = order.totalCost * BonusCodes.get().get(coupon) / 100;
+        if(variables.existCoupon(coupon)){
+            double discountAmount = order.totalCost * variables.getCouponDiscount(coupon) / 100;
             return order.totalCost - discountAmount;
         } else {
             return order.totalCost;

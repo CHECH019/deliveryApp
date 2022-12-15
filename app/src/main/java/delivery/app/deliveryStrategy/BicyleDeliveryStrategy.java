@@ -17,11 +17,11 @@ public class BicyleDeliveryStrategy extends AbstractDeliveryStrategy{
 
     @Override
     public double calculateDeliveryCost() {
-        return deliveryDistanceAPI.calculateDeliveryDistance(order.getCustomerAddress())*.25;
+        return deliveryDistanceAPI.calculateDeliveryDistance(order.getCustomerAddress())*variables.getBicyleDeliveryCostKm();
     }
 
     @Override
     public double calculateDeliveryTime() {
-        return deliveryDistanceAPI.calculateDeliveryDistance(order.getCustomerAddress()) / 15 * 60;
+        return deliveryDistanceAPI.calculateDeliveryDistance(order.getCustomerAddress()) / variables.getBicyleDeliveryVelocity();
     }
 }
