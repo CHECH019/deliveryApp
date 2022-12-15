@@ -1,8 +1,8 @@
-package delivery.app.deliveryServices;
+package delivery.app.deliveryFactories;
 
 import delivery.app.deliveryPerson.DeliveryPersonManager;
+import delivery.app.deliveryStrategy.AbstractDeliveryStrategy;
 import delivery.app.deliveryStrategy.BicyleDeliveryStrategy;
-import delivery.app.deliveryStrategy.DeliveryServiceStrategy;
 import delivery.app.deliveryStrategy.MotorcycleDeliveryStrategy;
 import delivery.app.order.Order;
 
@@ -13,7 +13,7 @@ public class DeliveryDistanceFactory extends DeliveryFactory {
     }
 
     @Override
-    public DeliveryServiceStrategy getDeliveryStrategy() {
+    public AbstractDeliveryStrategy getDeliveryStrategy() {
         return deliveryDistanceAPI.calculateDeliveryDistance(order.getCustomerAddress()) < 10 ? new BicyleDeliveryStrategy(order,DeliveryPersonManager.findAvailableDeliveryPerson("BICYCLE")) : new MotorcycleDeliveryStrategy(order,DeliveryPersonManager.findAvailableDeliveryPerson("MOTORCYCLE"));
         
     }

@@ -9,6 +9,7 @@ public class StandardOrder extends Order{
 
     public StandardOrder(String customerName, String customerAddress) {
         super(customerName, customerAddress);
+        this.priority = "NORMAL";
     }
 
     @Override

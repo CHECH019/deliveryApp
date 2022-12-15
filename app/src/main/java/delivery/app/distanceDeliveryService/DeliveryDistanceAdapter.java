@@ -1,9 +1,8 @@
 package delivery.app.distanceDeliveryService;
 
 public class DeliveryDistanceAdapter implements DeliveryDistanceAPI {
+    
     private DeliveryDistanceCalculator distanceCalculator;
-
-
 
     public DeliveryDistanceAdapter(DeliveryDistanceCalculator distanceCalculator) {
         this.distanceCalculator = distanceCalculator;

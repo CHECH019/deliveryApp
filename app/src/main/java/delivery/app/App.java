@@ -17,33 +17,29 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Customer customer1 = new Customer("Sergio Suarique", "Cra 123");
+        DeliveryFacade delivery = new DeliveryFacade();
 
-        DeliveryFacade delivery = new DeliveryFacade(customer1);
+        Customer customer1 = new Customer("Sergio Suarique","Cra 123");
 
-        
         List<Item> items = new ArrayList<>();
         items.add(new Item("Pizza", 1, 10.99));
         items.add(new Item("Soda", 2, 1.99));
 
-        delivery.createOrder(items, "D1SC0UNT10");
+        delivery.createOrder(customer1,items, "D1SC0UNT10","LOW");
 
-        delivery.deliver();
-
-        System.out.println("\n---------------------------------------\n");
-
-
+    
         Customer customer2 = new Customer("Ximena Perez", "Calle 92");
 
-        DeliveryFacade delivery2 = new DeliveryFacade(customer2);
         
         List<Item> items2 = new ArrayList<>();
         items2.add(new Item("Burger", 2, 15.99));
         items2.add(new Item("Pepsi", 2, 1.25));
 
-        delivery2.createOrder(items2);
+        delivery.createOrder(customer2,items2,"D1SC0UNT20","HIGH");
 
-        delivery2.deliver();
+        delivery.deliver();
+        System.out.println("\n---------------------------------------\n");
+        delivery.deliver();
 
     }
 }

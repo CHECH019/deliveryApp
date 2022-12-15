@@ -14,6 +14,36 @@ public abstract class Order implements Prototype {
     protected String customerAddress;
     protected List<Item> items;
     protected double totalCost;
+    protected double deliveryFee;
+    protected String priority;
+
+    
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public double getDeliveryFee() {
+        return deliveryFee;
+    }
+
+    public void setDeliveryFee(double deliveryFee) {
+        this.deliveryFee = deliveryFee;
+    }
+
+    protected double deliveryTime;
+    public double getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    public void setDeliveryTime(double deliveryTime) {
+        this.deliveryTime = deliveryTime;
+    }
+
     public OrderNotifier nofitier;
 
     public Order(){}
@@ -22,6 +52,7 @@ public abstract class Order implements Prototype {
         this.customerName = order.customerName;
         this.customerAddress = order.customerAddress;
         this.totalCost = order.totalCost;
+        this.priority = order.priority;
         this.items = new ArrayList<>(order.getItems());
         this.nofitier = new OrderNotifier();
     }

@@ -11,7 +11,7 @@ public class BicyleDeliveryStrategy extends AbstractDeliveryStrategy{
 
     @Override
     public void deliver() {
-        System.out.println("Bicycle delivery...");
+        System.out.println("Delivery method: Bicycle");
         super.deliver();
     }
 

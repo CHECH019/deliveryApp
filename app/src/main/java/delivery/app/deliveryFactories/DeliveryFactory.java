@@ -1,6 +1,6 @@
-package delivery.app.deliveryServices;
+package delivery.app.deliveryFactories;
 
-import delivery.app.deliveryStrategy.DeliveryServiceStrategy;
+import delivery.app.deliveryStrategy.AbstractDeliveryStrategy;
 import delivery.app.distanceDeliveryService.DeliveryDistanceAPI;
 import delivery.app.distanceDeliveryService.DeliveryDistanceAdapter;
 import delivery.app.distanceDeliveryService.DeliveryDistanceCalculator;
@@ -17,5 +17,5 @@ public abstract class DeliveryFactory {
     }
 
 
-    public abstract DeliveryServiceStrategy  getDeliveryStrategy();
+    public abstract AbstractDeliveryStrategy  getDeliveryStrategy();
 }
